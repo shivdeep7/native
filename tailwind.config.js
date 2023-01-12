@@ -1,0 +1,10 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./screens/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    fontFamily: {
+      poppins: ["Poppins"],
+    },
+  },
+  plugins: [],
+};
