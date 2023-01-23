@@ -1,36 +1,96 @@
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+  ScrollView,
+} from "react-native";
 import CustomStatusBar from "../components/StatusBar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CanadaFlag from "../assets/img/canada-flag.png";
-import WorkBee from "../assets/img/Workbee.png";
+import { useDispatch, useSelector } from "react-redux";
+import { requestCode, reset } from "../features/auth/authSlice";
+import { useError } from "../hooks/useError";
+import { IconArrowNarrowRight } from "tabler-icons-react-native";
 
 const Login = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const [errors, setError] = useError("auth");
+  const { isLoading, isSuccess } = useSelector((state) => state.auth);
+  const [phoneNumber, setPhoneNumber] = useState(null);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigation.navigate("otp", { phoneNumber });
+    }
+    return () => dispatch(reset());
+  }, [isSuccess, navigation]);
+
+  const handleOnSubmit = () => {
+    dispatch(requestCode(phoneNumber));
+  };
+
   return (
-    <View style={{ flex: 1, padding: 20, backgroundColor: "#fff" }}>
+    <ScrollView style={{ flex: 1, padding: 30, backgroundColor: "#fff" }}>
       <CustomStatusBar color="#fff" />
-      <Text className="font-[PoppinsLight] text-3xl mt-10">
-        Get started {"\n"}to apply
-      </Text>
-      <View className="flex-row mt-5">
-        <View className="flex-row  rounded-xl bg-slate-100 p-4 border-1 border-gray-300 mr-2">
+      <View style={{ width: "90%" }}>
+        <Text className="font-[PoppinsSemiBold] text-3xl mt-10">
+          Welcome to Crew
+        </Text>
+        <Text className="font-[PoppinsMedium] text-md mt-2">
+          A verification code will be sent to this number to access the app
+        </Text>
+      </View>
+      <View className="flex-row mt-6">
+        <View className="flex-row  rounded-md bg-zinc-100 p-4 border-1 border-gray-300 mr-2">
           <Image source={CanadaFlag} style={{ width: 26, height: 20 }} />
-          <Text className="ml-2 font-[PoppinsMedium]">+91</Text>
+          <Text className="ml-2 font-[PoppinsMedium]">+1</Text>
         </View>
+
         <TextInput
           keyboardType="number-pad"
-          className="rounded-xl bg-slate-100 p-4 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 border-1 border-gray-300 flex-1 placeholder:text-md text-md"
+          onChangeText={(phone) => setPhoneNumber(phone)}
+          className={`rounded-md p-4 font-[PoppinsMedium] focus:border-2 focus:border-dark  flex-1  text-md ${
+            errors
+              ? "bg-red-100 text-red-400 placeholder:text-red-400 border-2 border-red-300"
+              : "bg-zinc-100 text-black"
+          }`}
           placeholder="Your phone number"
         />
       </View>
-      <TouchableOpacity className="p-4 drop-shadow-xl rounded-xl mt-3 bg-black">
+      {errors && (
+        <View className="mt-3">
+          <Text className="text-red-400 text-md font-[PoppinsMedium]">
+            {typeof errors == "string" && errors}
+          </Text>
+        </View>
+      )}
+      <TouchableOpacity
+        className={`flex-row justify-center items-center p-3 rounded-md mt-4 ${
+          isLoading ? "bg-zinc-100" : "bg-black"
+        }`}
+        onPress={() => handleOnSubmit()}
+        disabled={isLoading}
+      >
         <Text
-          className="text-white text-center text-md font-[PoppinsMedium]"
-          onPress={() => navigation.navigate("otp")}
+          className={`text-center text-md font-[PoppinsMedium] mr-2 ${
+            isLoading ? "text-zinc-400" : "text-white"
+          }`}
         >
           Send Code
         </Text>
+        <IconArrowNarrowRight size={28} color="#fff" />
+        {isLoading && (
+          <ActivityIndicator
+            animating={true}
+            className={`${isLoading ? "text-zinc-400" : "text-white"}`}
+            size="small"
+          />
+        )}
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 

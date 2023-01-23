@@ -2,8 +2,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CustomStatusBar from "../components/StatusBar";
 
 import Post from "../components/Post";
+import { useDispatch } from "react-redux";
+import { logout } from "../features/auth/authSlice";
+import { useEffect } from "react";
 
 const Home = ({ navigation }) => {
+  const dispatch = useDispatch();
   const posts = [
     {
       name: "Warehouse Associate",
@@ -30,6 +34,10 @@ const Home = ({ navigation }) => {
       hiringNo: 2,
     },
   ];
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: "#F8F8F8" }}>
@@ -61,9 +69,9 @@ const Home = ({ navigation }) => {
       >
         <Text
           style={{ color: "#fff", fontWeight: "500" }}
-          onPress={() => navigation.navigate("login")}
+          onPress={() => handleLogout()}
         >
-          Login
+          Logout
         </Text>
       </TouchableOpacity>
     </View>
