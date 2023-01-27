@@ -16,7 +16,10 @@ import Otp from "./screens/OTP";
 import RegisterName from "./screens/RegisterName";
 import RegisterEmail from "./screens/RegisterEmail";
 import Settings from "./screens/Settings";
-
+import OnBoard from "./screens/OnBoard";
+import Transfers from "./screens/Transfers";
+import Transfer from "./screens/Transfer";
+import Success from "./screens/Success";
 const Main = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -46,9 +49,13 @@ const Main = () => {
             <>
               <Stack.Screen name="app" component={App} />
               <Stack.Screen name="Settings" component={Settings} />
+              <Stack.Screen name="transfers" component={Transfers} />
+              <Stack.Screen name="transfer" component={Transfer} />
+              <Stack.Screen name="success" component={Success} />
             </>
           ) : (
             <>
+              <Stack.Screen name="boarding" component={OnBoard} />
               <Stack.Screen name="login" component={Login} />
               <Stack.Screen name="otp" component={Otp} />
               <Stack.Screen name="RegisterName" component={RegisterName} />

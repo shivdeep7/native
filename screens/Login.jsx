@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={{ flex: 1, padding: 30, backgroundColor: "#fff" }}>
+    <ScrollView style={{ flex: 1, padding: 20, backgroundColor: "#fff" }}>
       <CustomStatusBar color="#fff" />
       <View style={{ width: "90%" }}>
         <Text className="font-[PoppinsSemiBold] text-3xl mt-10">

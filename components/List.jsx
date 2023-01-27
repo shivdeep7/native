@@ -1,9 +1,15 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const List = ({ title, state, indicator, Icon, color, backgroundColor }) => {
+  const navigation = useNavigation();
+
   return (
-    <View className="flex-row bg-zinc-800 p-3 rounded-lg justify-between items-center mb-3">
+    <TouchableOpacity
+      onPress={() => navigation.navigate("transfer")}
+      className="flex-row bg-zinc-800 py-3 pr-5 pl-3 rounded-lg justify-between items-center mb-3"
+    >
       <View className="flex-row">
         <View
           className={`flex-row  justify-center items-center rounded-2xl  mr-3 p-3 ${backgroundColor}`}
@@ -27,7 +33,7 @@ const List = ({ title, state, indicator, Icon, color, backgroundColor }) => {
           {indicator}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

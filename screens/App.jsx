@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Widthraw from "./Widthraw";
 import Dash from "./Dash";
-import CustomStatusBar from "../components/StatusBar";
+import Settings from "./Settings";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -41,9 +41,9 @@ const App = () => {
             },
           }}
         >
-          <Tab.Screen name="Home" component={Dash} />
-          <Tab.Screen name="Pay" component={Widthraw} />
-          <Tab.Screen name="profile" component={Widthraw} />
+          <Tab.Screen name="Wallet" component={Dash} />
+          <Tab.Screen name="Send" component={Widthraw} />
+          <Tab.Screen name="Profile" component={Settings} />
         </Tab.Navigator>
       </SafeAreaView>
     </View>

@@ -1,20 +1,26 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
-import { IconArrowNarrowRight } from "tabler-icons-react-native";
 import Title from "../components/Title";
-import TextInput from "../components/Input";
+import TextInput from "../components/TextInput";
+import Button from "../components/Button";
 
-const Widthraw = () => {
+const Widthraw = ({ navigation }) => {
   return (
-    <ScrollView className="flex-1 p-5" style={{ backgroundColor: "#111" }}>
-      <Title title="Pay" size="4xl" marginTop={1} marginBottom={3} />
+    <ScrollView className="flex-1 p-5" style={{ backgroundColor: "#000" }}>
+      <Title title="Pay" size="3xl" marginTop={1} marginBottom={1} />
       <View>
         <TextInput label="Email" placeholder="Email Address" />
-        <TouchableOpacity className="flex-row bg-emerald-500 p-3 rounded-md justify-center items-center mt-5">
-          <Text className="text-white font-[PoppinsSemiBold] text-md">
-            Widthraw
-          </Text>
-        </TouchableOpacity>
+        <TextInput label="Amount" placeholder="Amount in CAD" />
+        <TextInput label="Security Question" placeholder="Security Question" />
+        <TextInput label="Answer" placeholder="Secret Answer" />
+
+        <Button
+          text="Widthraw"
+          backgroundColor="bg-white"
+          borderColor="bg-gray-400"
+          arrow={true}
+          onPress={() => navigation.navigate("success")}
+        />
       </View>
     </ScrollView>
   );

@@ -29,11 +29,13 @@ const Card = ({
         <Text className="text-white font-[PoppinsMedium] text-lg">
           {footerTitle}
         </Text>
-        <View className="flex-row bg-teal-300 rounded-full w-24 justify-center p-2 shadow-purple-900]">
-          <Text className="text-teal-900 font-[PoppinsSemiBold] text-xs">
-            {buttonText}
-          </Text>
-        </View>
+        {buttonText && (
+          <View className="flex-row bg-teal-300 rounded-full w-24 justify-center p-2 shadow-purple-900]">
+            <Text className="text-teal-900 font-[PoppinsSemiBold] text-xs">
+              {buttonText}
+            </Text>
+          </View>
+        )}
       </View>
     </Tag>
   );

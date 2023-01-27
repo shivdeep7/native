@@ -5,13 +5,11 @@ import {
   StatusBar,
   ScrollView,
   RefreshControl,
-  TouchableOpacity,
-  Image,
   FlatList,
 } from "react-native";
 import React, { useState } from "react";
 import card from "../assets/img/card.png";
-import { Entypo, Ionicons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import List from "../components/List";
 import Card from "../components/Card";
 import Title from "../components/Title";
@@ -40,20 +38,20 @@ const Dash = ({ navigation }) => {
 
   return (
     <ScrollView style={{ backgroundColor: "#111" }}>
+      <StatusBar barStyle="light-content" />
+
       <View
         className="flex-1 bg-black p-5 pb-0 mb-0"
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <StatusBar barStyle="light-content" />
         <Card
           title="Lifetime Balance"
           subtitle="$2300"
           footerTitle="Credit History"
           buttonText="widthraw"
         />
-
         <Card
           title="Lifetime Balance"
           subtitle="$2300"
@@ -61,8 +59,16 @@ const Dash = ({ navigation }) => {
           buttonText="widthraw"
           backgroundImage={card}
         />
+        <View className="flex-row justify-between items-center">
+          <Title title="Transfers" marginBottom={3} marginTop={5} />
+          <Text
+            className="text-white font-[PoppinsMedium]"
+            onPress={() => navigation.navigate("transfers")}
+          >
+            See all
+          </Text>
+        </View>
 
-        <Title title="Transfers" />
         <FlatList
           className="flex-1 mb-10"
           data={DATA}
