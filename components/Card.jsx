@@ -20,7 +20,7 @@ const Card = ({
     >
       <View className="flex-1">
         <Text className="text-white font-[PoppinsMedium] text-lg">{title}</Text>
-        <Text className="text-white font-[PoppinsSemiBold] text-lg">
+        <Text className="text-white font-[PoppinsSemiBold] text-3xl mt-2">
           {subtitle}
         </Text>
       </View>

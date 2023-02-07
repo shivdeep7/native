@@ -44,7 +44,7 @@ const Login = ({ navigation }) => {
         </Text>
       </View>
       <View className="flex-row mt-6">
-        <View className="flex-row  rounded-md bg-zinc-100 p-4 border-1 border-gray-300 mr-2">
+        <View className="flex-row  rounded-sm bg-zinc-100 p-4 border-1 border-gray-300 mr-2">
           <Image source={CanadaFlag} style={{ width: 26, height: 20 }} />
           <Text className="ml-2 font-[PoppinsMedium]">+1</Text>
         </View>
@@ -52,7 +52,7 @@ const Login = ({ navigation }) => {
         <TextInput
           keyboardType="number-pad"
           onChangeText={(phone) => setPhoneNumber(phone)}
-          className={`rounded-md p-4 font-[PoppinsMedium] focus:border-2 focus:border-dark  flex-1  text-md ${
+          className={`rounded-sm p-4 font-[PoppinsMedium] focus:border-2 focus:border-dark  flex-1  text-md ${
             errors
               ? "bg-red-100 text-red-400 placeholder:text-red-400 border-2 border-red-300"
               : "bg-zinc-100 text-black"
@@ -68,7 +68,7 @@ const Login = ({ navigation }) => {
         </View>
       )}
       <TouchableOpacity
-        className={`flex-row justify-center items-center p-3 rounded-md mt-4 ${
+        className={`flex-row justify-center items-center p-3 rounded-xs mt-4 ${
           isLoading ? "bg-zinc-100" : "bg-black"
         }`}
         onPress={() => handleOnSubmit()}

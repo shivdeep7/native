@@ -2,8 +2,7 @@ import axios from "axios";
 import { AsyncStorage } from "react-native";
 import { REACT_APP_BASE_URL as BASE_URL } from "@env";
 
-axios.defaults.baseURL = "http://192.168.2.44:4000/";
-axios.defaults.timeout = 10000000;
+axios.defaults.baseURL = "http://localhost:4000/";
 
 axios.interceptors.request.use(
   async function (config) {

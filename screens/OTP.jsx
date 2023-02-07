@@ -77,9 +77,9 @@ const Login = ({ route, navigation }) => {
 
   return (
     <>
-      <View style={{ flex: 1, padding: 30, backgroundColor: "#fff" }}>
+      <View style={{ flex: 1, padding: 20, backgroundColor: "#fff" }}>
         <CustomStatusBar color="#fff" />
-        <Text className="font-[PoppinsSemiBold] text-3xl mt-10">
+        <Text className="font-[PoppinsSemiBold] text-3xl 3xl mt-10">
           Verify your {"\n"}mobile number
         </Text>
         <Text className="font-[PoppinsRegular] text-md">
@@ -100,7 +100,7 @@ const Login = ({ route, navigation }) => {
                   errors
                     ? "bg-red-100 text-red-500 border-2 border-red-300"
                     : "bg-zinc-100 border-dark"
-                } rounded-md p-4 w-12 text-center mr-3 focus:bg-white focus:border-black focus:border-2`}
+                } rounded-xs p-4 w-12 text-center mr-3 focus:bg-white focus:border-black focus:border-2`}
               />
             );
           })}

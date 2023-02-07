@@ -14,11 +14,11 @@ const RegisterName = ({ navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isSuccess && !user.email) {
+    if (isSuccess && user && !user.email) {
       navigation.replace("RegisterEmail");
     }
 
-    if (isSuccess && user.email) {
+    if (isSuccess && user && user.email) {
       navigation.replace("home");
     }
 
@@ -33,15 +33,15 @@ const RegisterName = ({ navigation }) => {
     <>
       <View style={{ flex: 1, padding: 20, backgroundColor: "#fff" }}>
         <CustomStatusBar />
-        <View className="mt-5">
-          <Text className="font-[PoppinsMedium] text-xl">Hey there 👋</Text>
-          <Text className="font-[PoppinsLight] text-xl">
+        <View className="mt-10">
+          <Text className="font-[PoppinsSemiBold] text-3xl">Hey there 👋</Text>
+          <Text className="font-[PoppinsMedium] text-xl">
             What should we call you?
           </Text>
         </View>
         <TextInput
           onChangeText={(value) => setName(value)}
-          className={`p-5 bg-zinc-100 rounded-lg mt-3 focus:border-2 focus:border-dark  border-dark placeholder:text-xl ${
+          className={`p-5 bg-zinc-100 rounded-sm mt-3 focus:border-2 focus:border-dark  border-dark placeholder:text-xl text-xl ${
             errors && "bg-red-100 text-red-500 border-2 border-red-300"
           }`}
           placeholder="Enter your name here"

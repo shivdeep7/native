@@ -5,7 +5,12 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setInitialUser } from "./features/auth/authSlice";
+import * as Notifications from "expo-notifications";
 
+// Get the custom hooks
+import { useNotifications } from "./hooks/useNotifications";
+
+// Setup the stack navigator
 const Stack = createNativeStackNavigator();
 
 // Import the screens

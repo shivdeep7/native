@@ -5,11 +5,25 @@ import { IconChevronLeft, IconChevronRight } from "tabler-icons-react-native";
 import { updateProfile } from "../features/auth/authSlice";
 import { useError } from "../hooks/useError";
 import { useDispatch } from "react-redux";
+import { useNotifications } from "../hooks/useNotifications";
+import * as Notifications from "expo-notifications";
 
 const RegisterEmail = ({ navigation }) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useError("auth");
   const [email, setEmail] = useState("");
+  const { registerForPushNofitication } = useNotifications();
+
+  useEffect(() => {
+    registerForPushNofitication();
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: true,
+      }),
+    });
+  }, []);
 
   const handleOnSubmit = () => {
     dispatch(updateProfile({ email }));
@@ -28,7 +42,7 @@ const RegisterEmail = ({ navigation }) => {
         <TextInput
           onPress={() => this.textInput.current.focus()}
           className={`
-            p-5 bg-zinc-100 rounded-lg mt-3 focus:border-2 focus:border-dark  border-dark placeholder:text-xl
+            p-5 bg-zinc-100 rounded-sm mt-3 focus:border-2 focus:border-dark  border-dark placeholder:text-xl
             ${errors && "bg-red-100 border-red-400 text-red-400"}
 
             `}

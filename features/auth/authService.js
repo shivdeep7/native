@@ -14,10 +14,7 @@ const verifyOtp = async (data) => {
 };
 
 const requestCode = async (phone) => {
-  console.log("sending request");
-
   const response = await axios.post(SERVER, { phone });
-  console.log("res");
 
   if (response.data) {
     return response.data;

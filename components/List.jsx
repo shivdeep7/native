@@ -2,12 +2,20 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
-const List = ({ title, state, indicator, Icon, color, backgroundColor }) => {
+const List = ({
+  title,
+  state,
+  indicator,
+  Icon,
+  color,
+  backgroundColor,
+  transferId,
+}) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("transfer")}
+      onPress={() => navigation.navigate("transfer", { transferId })}
       className="flex-row bg-zinc-800 py-3 pr-5 pl-3 rounded-lg justify-between items-center mb-3"
     >
       <View className="flex-row">

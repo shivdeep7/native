@@ -13,7 +13,7 @@ const data = {
   Icon: Entypo,
 };
 
-const Transfer = () => {
+const Transfer = ({ route }) => {
   const teal = "0, 211, 182";
   const red = "215, 86, 206";
   const color = data.state != "Deposited" ? teal : red;

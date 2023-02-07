@@ -3,6 +3,7 @@ import {
   Text,
   FlatList,
   ScrollView,
+  Image,
   TouchableOpacity,
 } from "react-native";
 import React from "react";
@@ -11,54 +12,41 @@ import CustomeStatusBar from "../components/StatusBar";
 import { Entypo } from "@expo/vector-icons";
 import List from "../components/List";
 import BackButton from "../components/BackButton";
-
-const DATA = [
-  {
-    title: "Cross Merge Salary",
-    state: "Deposited",
-    amount: "$1200",
-    Icon: Entypo,
-  },
-  {
-    title: "E-Transfer - Widthrawal",
-    state: "Pending",
-    amount: "$800",
-    Icon: Entypo,
-  },
-];
+import coinImage from "../assets/img/coin.png";
+import { useSelector } from "react-redux";
+import TransferList from "../components/TransferList";
 
 const Transfers = () => {
+  const { transactions } = useSelector((auth) => auth.transaction);
+
   return (
-    <ScrollView style={{ backgroundColor: "#111", padding: 20 }}>
+    <ScrollView
+      style={{ backgroundColor: "#111", padding: 20 }}
+      contentContainerStyle={{ flexGrow: 1 }}
+    >
       <CustomeStatusBar style="light-content" color="#111" />
-      <View className="flex-1">
+      <View className="flex-1 ">
         <BackButton bgColor="bg-zinc-800" />
-        <Title title="Transfers" size="3xl" marginBottom={0} />
-        <Text className="text-zinc-400 text-sm font-[PoppinsMedium] ">
-          All of your trander history
-        </Text>
-        <FlatList
-          className="flex-1 mt-5"
-          data={DATA}
-          renderItem={({ item }) => {
-            const color = item.state == "Deposited" ? "#00D3B6" : "#D756CE";
-            const backgroundColor =
-              item.state == "Deposited"
-                ? "bg-teal-400/[.1]"
-                : "bg-pink-400/[.1]";
-            return (
-              <List
-                title={item.title}
-                state={item.state}
-                indicator={item.amount}
-                Icon={item.Icon}
-                color={color}
-                backgroundColor={backgroundColor}
-              />
-            );
-          }}
-          keyExtractor={(item) => item.id}
-        />
+
+        {transactions.length != 0 ? (
+          <View>
+            <Title title="Transfers" size="3xl" marginBottom={0} />
+            <Text className="text-zinc-400 text-sm font-[PoppinsMedium] ">
+              All of your trander history
+            </Text>
+
+            <View className="mt-3">
+              <TransferList data={transactions} />
+            </View>
+          </View>
+        ) : (
+          <View className="flex-1 p-2 justify-center items-center mb-20">
+            <Image source={coinImage} style={{ width: 120, height: 120 }} />
+            <Text className="text-white text-xl font-[PoppinsSemiBold] my-2 text-center">
+              You don't have any transactions
+            </Text>
+          </View>
+        )}
       </View>
     </ScrollView>
   );

@@ -1,39 +1,38 @@
 import {
   View,
   Text,
-  ImageBackground,
+  Image,
   StatusBar,
   ScrollView,
   RefreshControl,
   FlatList,
 } from "react-native";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserCurrentBalance, reset } from "../features/user/userSlice";
 import card from "../assets/img/card.png";
 import { Entypo } from "@expo/vector-icons";
 import List from "../components/List";
 import Card from "../components/Card";
 import Title from "../components/Title";
-
-const DATA = [
-  {
-    title: "Cross Merge Salary",
-    state: "Deposited",
-    amount: "$1200",
-    Icon: Entypo,
-  },
-  {
-    title: "E-Transfer - Widthrawal",
-    state: "Pending",
-    amount: "$800",
-    Icon: Entypo,
-  },
-];
+import { useEffect } from "react";
+import coinImage from "../assets/img/coin.png";
+import TransferList from "../components/TransferList.jsx";
 
 const Dash = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
+  const dispatch = useDispatch();
+  const { transactions } = useSelector((state) => state.transaction);
+  const { user } = useSelector((state) => state.auth);
+  const { credit } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(getUserCurrentBalance());
+    return () => dispatch(reset());
+  }, []);
 
   const onRefresh = () => {
-    console.log("refresh");
+    //console.log("refresh");
   };
 
   return (
@@ -47,16 +46,14 @@ const Dash = ({ navigation }) => {
         }
       >
         <Card
-          title="Lifetime Balance"
-          subtitle="$2300"
+          title="Lifetime Earnings"
+          subtitle={`$${credit?.lifeTimeEarnings}`}
           footerTitle="Credit History"
-          buttonText="widthraw"
         />
         <Card
-          title="Lifetime Balance"
-          subtitle="$2300"
+          title="Current Credit"
+          subtitle={`$${credit?.balance}`}
           footerTitle="Shivdeep Singh"
-          buttonText="widthraw"
           backgroundImage={card}
         />
         <View className="flex-row justify-between items-center">
@@ -69,28 +66,16 @@ const Dash = ({ navigation }) => {
           </Text>
         </View>
 
-        <FlatList
-          className="flex-1 mb-10"
-          data={DATA}
-          renderItem={({ item }) => {
-            const color = item.state == "Deposited" ? "#00D3B6" : "#D756CE";
-            const backgroundColor =
-              item.state == "Deposited"
-                ? "bg-teal-400/[.1]"
-                : "bg-pink-400/[.1]";
-            return (
-              <List
-                title={item.title}
-                state={item.state}
-                indicator={item.amount}
-                Icon={item.Icon}
-                color={color}
-                backgroundColor={backgroundColor}
-              />
-            );
-          }}
-          keyExtractor={(item) => item.id}
-        />
+        {transactions.length != 0 ? (
+          <TransferList data={transactions} />
+        ) : (
+          <View className="bg-zinc-800 rounded-lg p-5 justify-center items-center mb-5">
+            <Image source={coinImage} style={{ width: 100, height: 100 }} />
+            <Text className="text-white text-xl font-[PoppinsSemiBold] my-2 text-center">
+              You don't have any transactions
+            </Text>
+          </View>
+        )}
       </View>
     </ScrollView>
   );

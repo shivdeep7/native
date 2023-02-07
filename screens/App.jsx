@@ -1,14 +1,25 @@
 import { View, Text, StatusBar, Dimensions } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Widthraw from "./Widthraw";
 import Dash from "./Dash";
 import Settings from "./Settings";
+import { useDispatch, useSelector } from "react-redux";
+import * as transaction from "../features/transactions/transactionSlice";
 
 const Tab = createMaterialTopTabNavigator();
 
 const App = () => {
+  const dispatch = useDispatch();
+  const { transactions } = useSelector((state) => state.transaction);
+
+  useEffect(() => {
+    dispatch(transaction.getAllTransactions());
+
+    //   return () => dispatch(transaction.reset());
+  }, []);
+
   return (
     <View className="flex-1 bg-black" style={{ backgroundColor: "#111" }}>
       <SafeAreaView className="flex-1">
