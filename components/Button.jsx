@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import React from "react";
 import { IconArrowNarrowRight } from "tabler-icons-react-native";
 
@@ -7,6 +7,7 @@ const Button = ({
   backgroundColor,
   textColor,
   borderColor,
+  loading,
   onPress = () => {},
   arrow = false,
 }) => {
@@ -17,7 +18,10 @@ const Button = ({
         style={{ paddingBottom: 5, paddingRight: 5, left: 2 }}
       >
         <View
-          className={`flex-row justify-center items-center p-3 rounded-xs ${backgroundColor}`}
+          className={`flex-row justify-center items-center p-3 rounded-xs ${backgroundColor} ${
+            loading && "opacity-25"
+          }`}
+          disabled={loading}
           style={{
             marginLeft: -2,
             marginTop: -2,
@@ -29,6 +33,7 @@ const Button = ({
           >
             {text}
           </Text>
+          {loading && <ActivityIndicator />}
           {arrow && <IconArrowNarrowRight size={28} color={textColor} />}
         </View>
       </View>

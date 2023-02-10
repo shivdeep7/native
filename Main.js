@@ -5,10 +5,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setInitialUser } from "./features/auth/authSlice";
-import * as Notifications from "expo-notifications";
-
-// Get the custom hooks
-import { useNotifications } from "./hooks/useNotifications";
 
 // Setup the stack navigator
 const Stack = createNativeStackNavigator();
@@ -20,7 +16,7 @@ import Login from "./screens/Login";
 import Otp from "./screens/OTP";
 import RegisterName from "./screens/RegisterName";
 import RegisterEmail from "./screens/RegisterEmail";
-import Settings from "./screens/Settings";
+import Settings from "./screens/Profile";
 import OnBoard from "./screens/OnBoard";
 import Transfers from "./screens/Transfers";
 import Transfer from "./screens/Transfer";

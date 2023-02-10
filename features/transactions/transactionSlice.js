@@ -7,7 +7,27 @@ const initialState = {
   isError: false,
   message: "",
   transactions: [],
+  transaction: {},
 };
+
+// Action to get a single transaction
+export const getSingleTransaction = createAsyncThunk(
+  "transaction/getSingleTransaction",
+  async (transferId, thunkAPI) => {
+    try {
+      return await transactionService.getSingleTransction(transferId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.response.data.errors ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 // Action to get the list of all transactions
 export const getAllTransactions = createAsyncThunk(
@@ -33,7 +53,9 @@ const transactionSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      return { ...initialState };
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = false;
     },
   },
   extraReducers: (builder) => {
@@ -47,6 +69,19 @@ const transactionSlice = createSlice({
         state.transactions = action.payload;
       })
       .addCase(getAllTransactions.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getSingleTransaction.pending, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(getSingleTransaction.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.transaction = action.payload;
+      })
+      .addCase(getSingleTransaction.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

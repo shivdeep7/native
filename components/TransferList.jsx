@@ -6,9 +6,10 @@ import { Entypo } from "@expo/vector-icons";
 
 const TransferList = ({ data }) => {
   const { user } = useSelector((state) => state.auth);
+
   return (
     <FlatList
-      className="flex-1 mb-10"
+      className="flex-1"
       data={data}
       renderItem={({ item }) => {
         const status = item.to._id == user._id ? "Deposited" : "Withdrawn";

@@ -6,37 +6,59 @@ import {
   ScrollView,
   RefreshControl,
   FlatList,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserCurrentBalance, reset } from "../features/user/userSlice";
+
 import card from "../assets/img/card.png";
-import { Entypo } from "@expo/vector-icons";
-import List from "../components/List";
 import Card from "../components/Card";
 import Title from "../components/Title";
 import { useEffect } from "react";
 import coinImage from "../assets/img/coin.png";
 import TransferList from "../components/TransferList.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import * as transaction from "../features/transactions/transactionSlice";
+import * as user from "../features/user/userSlice";
 
 const Dash = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
   const dispatch = useDispatch();
-  const { transactions } = useSelector((state) => state.transaction);
-  const { user } = useSelector((state) => state.auth);
-  const { credit } = useSelector((state) => state.user);
+
+  const { transactions, isLoading: transactionLoading } = useSelector(
+    (state) => state.transaction
+  );
+  const { credit, isLoading: creditLoading } = useSelector(
+    (state) => state.user
+  );
 
   useEffect(() => {
-    dispatch(getUserCurrentBalance());
-    return () => dispatch(reset());
+    dispatch(transaction.getAllTransactions());
+    dispatch(user.getUserCurrentBalance());
+    return () => {
+      dispatch(transaction.reset());
+      dispatch(user.reset());
+    };
   }, []);
 
   const onRefresh = () => {
     //console.log("refresh");
   };
 
+  if (transactionLoading || creditLoading) {
+    return (
+      <ScrollView
+        style={{ backgroundColor: "#111" }}
+        contentContainerStyle={{ flexGrow: 1 }}
+      >
+        <View className="flex-1 justify-center items-center">
+          <ActivityIndicator color="gray" />
+        </View>
+      </ScrollView>
+    );
+  }
+
   return (
-    <ScrollView style={{ backgroundColor: "#111" }}>
+    <ScrollView style={{ backgroundColor: "#000" }}>
       <StatusBar barStyle="light-content" />
 
       <View

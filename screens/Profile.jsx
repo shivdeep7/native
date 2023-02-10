@@ -5,19 +5,18 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import React from "react";
-import CustomStatusBar from "../components/StatusBar";
+import React, { useEffect } from "react";
 import { logout } from "../features/auth/authSlice";
-import { useDispatch } from "react-redux";
 import Title from "../components/Title";
 import { MaterialIcons } from "@expo/vector-icons";
 import Button from "../components/Button";
+import { useSelector, useDispatch } from "react-redux";
 
 const data = [
   {
     id: 1,
     title: "Account Settings",
-    link: "account",
+    link: "ProfileSettings",
     icon: "account-circle",
     color: "white",
   },
@@ -36,12 +35,16 @@ const data = [
     color: "white",
   },
 ];
-const Settings = () => {
+const Profile = ({ navigation }) => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
   const renderItems = ({ item }) => {
     return (
-      <TouchableOpacity className="flex-row justify-start items-center mt-1 p-4 border-b-2 border-zinc-800">
+      <TouchableOpacity
+        className="flex-row justify-start items-center mt-1 p-4 border-b-2 border-zinc-800"
+        onPress={() => navigation.navigate(item.link)}
+      >
         <MaterialIcons name={item.icon} size={24} color={item.color} />
         <Text
           className={` font-[PoppinsRegular] text-md ml-3`}
@@ -70,10 +73,10 @@ const Settings = () => {
           </View>
           <View>
             <Text className="text-white font-[PoppinsSemiBold] text-lg">
-              Shivdeep Singh
+              {user?.name}
             </Text>
             <Text className="text-white font-[PoppinsMedium] text-md">
-              deep.shiv880@gmail.com
+              {user?.email}
             </Text>
           </View>
         </View>
@@ -99,4 +102,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default Profile;
