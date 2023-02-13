@@ -3,6 +3,7 @@
     "name": "boilerplate",
     "slug": "boilerplate",
     "version": "1.0.0",
+    "scheme": "crew",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

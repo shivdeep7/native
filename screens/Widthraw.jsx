@@ -3,6 +3,7 @@ import React from "react";
 import Title from "../components/Title";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
+import * as Linking from "expo-linking";
 
 const Widthraw = ({ navigation }) => {
   return (
@@ -19,7 +20,9 @@ const Widthraw = ({ navigation }) => {
           backgroundColor="bg-white"
           borderColor="bg-gray-400"
           arrow={true}
-          onPress={() => navigation.navigate("success")}
+          onPress={() =>
+            Linking.openURL("exp://172.20.10.2:19000/--/transfers")
+          }
         />
       </View>
     </ScrollView>

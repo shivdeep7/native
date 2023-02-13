@@ -82,7 +82,7 @@ const Dash = ({ navigation }) => {
           <Title title="Transfers" marginBottom={3} marginTop={5} />
           <Text
             className="text-white font-[PoppinsMedium]"
-            onPress={() => navigation.navigate("transfers")}
+            onPress={() => navigation.navigate("Transfers")}
           >
             See all
           </Text>

@@ -16,13 +16,6 @@ const RegisterEmail = ({ navigation }) => {
 
   useEffect(() => {
     registerForPushNofitication();
-    Notifications.setNotificationHandler({
-      handleNotification: async () => ({
-        shouldShowAlert: true,
-        shouldPlaySound: true,
-        shouldSetBadge: true,
-      }),
-    });
   }, []);
 
   const handleOnSubmit = () => {

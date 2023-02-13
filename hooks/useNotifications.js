@@ -15,9 +15,20 @@ export const useNotifications = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  // Handle the nofication response
+  const handleNoticationResopnse = (response) => {
+    console.log(" hello world ");
+    console.log(data);
+    const data = response.notification.request.content.data;
+    console.log(data.url);
+    if (data?.url) {
+      Linking.openURL(data.url);
+    }
+  };
+
+  // Register for the push notification
   const registerForPushNofitication = async () => {
     if (!user) {
-      console.log("killed");
       return;
     }
 
@@ -26,7 +37,6 @@ export const useNotifications = () => {
       // Get the existing permission
       const { status: existingStatus } = Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
-      console.log(finalStatus);
 
       // The permissions does not exists
       if (existingStatus !== "granted") {
@@ -63,5 +73,6 @@ export const useNotifications = () => {
 
   return {
     registerForPushNofitication,
+    handleNoticationResopnse,
   };
 };
