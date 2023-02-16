@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestCode, reset } from "../features/auth/authSlice";
 import { useError } from "../hooks/useError";
 import { IconArrowNarrowRight } from "tabler-icons-react-native";
+import { REACT_APP_NAME as APP_NAME } from "@env";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Login = ({ navigation }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigation.navigate("otp", { phoneNumber });
+      navigation.navigate("Otp", { phoneNumber });
     }
     return () => dispatch(reset());
   }, [isSuccess, navigation]);
@@ -37,7 +38,7 @@ const Login = ({ navigation }) => {
       <CustomStatusBar color="#fff" />
       <View style={{ width: "90%" }}>
         <Text className="font-[PoppinsSemiBold] text-3xl mt-10">
-          Welcome to Crew
+          Welcome to {APP_NAME}
         </Text>
         <Text className="font-[PoppinsMedium] text-md mt-2">
           A verification code will be sent to this number to access the app

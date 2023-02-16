@@ -8,12 +8,12 @@ import {
   FlatList,
   ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import card from "../assets/img/card.png";
 import Card from "../components/Card";
 import Title from "../components/Title";
-import { useEffect } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import coinImage from "../assets/img/coin.png";
 import TransferList from "../components/TransferList.jsx";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,24 +24,36 @@ const Dash = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
   const dispatch = useDispatch();
 
-  const { transactions, isLoading: transactionLoading } = useSelector(
-    (state) => state.transaction
-  );
+  const {
+    transactions,
+    isLoading: transactionLoading,
+    isSuccess,
+  } = useSelector((state) => state.transaction);
   const { credit, isLoading: creditLoading } = useSelector(
     (state) => state.user
   );
 
   useEffect(() => {
-    dispatch(transaction.getAllTransactions());
-    dispatch(user.getUserCurrentBalance());
-    return () => {
+    if (isSuccess) {
       dispatch(transaction.reset());
-      dispatch(user.reset());
-    };
-  }, []);
+    }
+  }, [isSuccess]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(transaction.getAllTransactions());
+      dispatch(user.getUserCurrentBalance());
+
+      return () => {
+        dispatch(transaction.reset());
+      };
+    }, [])
+  );
 
   const onRefresh = () => {
-    //console.log("refresh");
+    // On refresh fetch the new data
+    dispatch(transaction.getAllTransactions());
+    dispatch(user.getUserCurrentBalance());
   };
 
   if (transactionLoading || creditLoading) {

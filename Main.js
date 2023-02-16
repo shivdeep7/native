@@ -63,8 +63,8 @@ const Main = () => {
     dispatch(setInitialUser());
 
     Notifications.addNotificationReceivedListener(() => {
-      console.log(" Hello world ");
-      alert("Notification received");
+      // Action when the notification is received
+      // return true;
     });
 
     // Add the resopnse listner

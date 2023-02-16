@@ -4,6 +4,7 @@ import spaceship from "../assets/img/spaceship.gif";
 import onboard from "../assets/img/onboard.png";
 
 import Button from "../components/Button";
+import { REACT_APP_NAME as APP_NAME } from "@env";
 
 const OnBoard = ({ navigation }) => {
   return (
@@ -18,7 +19,7 @@ const OnBoard = ({ navigation }) => {
           Welcome to
         </Text>
         <Text className="color-white mt-2 text-4xl font-[PoppinsSemiBold] ">
-          Crew App
+          {APP_NAME} App
         </Text>
         <Text className="text-white mt-2 text-lg font-[PoppinsRegular] mt-2 ">
           Get started with building your {"\n"}credits with crew
@@ -30,10 +31,17 @@ const OnBoard = ({ navigation }) => {
             borderColor="bg-gray-400"
             text="Get started"
             arrow={true}
-            onPress={() => navigation.navigate("login")}
+            onPress={() => navigation.navigate("Login")}
           />
           <Text className="color-white text-center mt-5 font-[PoppinsMedium]">
-            Already with Crew?<Text className="color-blue-500"> Sign in</Text>
+            Already with Crew?
+            <Text
+              className="color-blue-500"
+              onPress={() => navigation.navigate("Login")}
+            >
+              {" "}
+              Sign in
+            </Text>
           </Text>
         </View>
       </View>

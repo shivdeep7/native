@@ -15,7 +15,7 @@ const List = ({
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("transfer", { transferId })}
+      onPress={() => navigation.navigate("Transfer", { transferId })}
       className="flex-row bg-zinc-800 py-3 pr-5 pl-3 rounded-lg justify-between items-center mb-3"
     >
       <View className="flex-row">

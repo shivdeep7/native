@@ -12,7 +12,7 @@ const TransferList = ({ data }) => {
       className="flex-1"
       data={data}
       renderItem={({ item }) => {
-        const status = item.to._id == user._id ? "Deposited" : "Withdrawn";
+        const status = item.from._id != user._id ? "Deposited" : "Withdrawn";
         const color = status == "Deposited" ? "#00D3B6" : "#D756CE";
         const backgroundColor =
           status == "Deposited" ? "bg-teal-400/[.1]" : "bg-pink-400/[.1]";

@@ -7,7 +7,7 @@ import { Audio, Video } from "expo-av";
 import successMp3 from "../assets/media/audio/success.mp3";
 import successMp4 from "../assets/media/audio/success.mp4";
 
-const Success = () => {
+const Success = ({ navigation }) => {
   const video = useRef();
   const [status, setStatus] = useState({});
   const playSound = async () => {
@@ -31,7 +31,6 @@ const Success = () => {
       }}
       contentContainerStyle={{ flexGrow: 1 }}
     >
-      {console.log(status)}
       <CustomStatusBar color="#000" style="light-content" />
       <View className="flex-1 justify-center p-5">
         <View className="items-center ">
@@ -61,6 +60,7 @@ const Success = () => {
           backgroundColor="bg-white"
           borderColor="bg-gray-400"
           textColor="black"
+          onPress={() => navigation.navigate("Send")}
           arrow
         />
 
@@ -69,6 +69,7 @@ const Success = () => {
           backgroundColor="bg-white"
           borderColor="bg-gray-400"
           textColor="black"
+          onPress={() => navigation.navigate("Wallet")}
         />
       </View>
     </ScrollView>

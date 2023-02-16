@@ -2,11 +2,9 @@ import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import CustomStatusBar from "../components/StatusBar";
 import React, { useEffect, useMemo, useState } from "react";
 import CountDown from "../components/CountDown";
-import { useFocusEffect } from "@react-navigation/native";
 
 import { reset, verifyOTP } from "../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { User } from "tabler-icons-react";
 import { useError } from "../hooks/useError";
 
 const Login = ({ route, navigation }) => {
@@ -28,11 +26,11 @@ const Login = ({ route, navigation }) => {
 
   useEffect(() => {
     if (isSuccess && user && !user.name) {
-      return navigation.replace("RegisterName");
+      navigation.replace("RegisterName");
     }
 
     if (isSuccess && user && !user.email) {
-      return navigation.replace("RegisterEmail");
+      navigation.replace("RegisterEmail");
     }
 
     if (isSuccess) {
@@ -115,7 +113,7 @@ const Login = ({ route, navigation }) => {
         <TouchableOpacity
           className="flex-row p-3 justify-center bg-zinc-100 rounded-full mt-3 w-56"
           disabled={disabled}
-          onPress={() => navigation.navigate("login")}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text
             className={`text-black text-center ${

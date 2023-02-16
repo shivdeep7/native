@@ -17,10 +17,7 @@ export const useNotifications = () => {
 
   // Handle the nofication response
   const handleNoticationResopnse = (response) => {
-    console.log(" hello world ");
-    console.log(data);
     const data = response.notification.request.content.data;
-    console.log(data.url);
     if (data?.url) {
       Linking.openURL(data.url);
     }
@@ -62,7 +59,6 @@ export const useNotifications = () => {
       }
 
       const token = (await Notifications.getExpoPushTokenAsync()).data;
-      console.log(token);
       // Save the user notification
       dispatch(updatePushStatus(true)) &&
         dispatch(updatePushNotificationToken(token));

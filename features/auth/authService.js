@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const VERIFY_OTP = "auth/login/phone/";
 const EDIT_PROFILE = "auth/user/";
@@ -15,7 +15,6 @@ const verifyOtp = async (data) => {
 
 const requestCode = async (phone) => {
   const response = await axios.post(SERVER, { phone });
-
   if (response.data) {
     return response.data;
   }

@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import authService from "./authService";
-import axios from "axios";
 
 // Logout
 export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
@@ -61,8 +60,6 @@ export const requestCode = createAsyncThunk(
     try {
       return await authService.requestCode(phoneNumber);
     } catch (error) {
-      console.log(error);
-
       const message =
         (error.response &&
           error.response.data &&

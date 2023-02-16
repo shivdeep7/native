@@ -17,7 +17,6 @@ import TransferList from "../components/TransferList";
 
 const Transfers = () => {
   const { transactions } = useSelector((state) => state.transaction);
-  console.log(transactions);
   return (
     <View
       style={{ backgroundColor: "#111", padding: 20, flex: 1 }}

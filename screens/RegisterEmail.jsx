@@ -56,7 +56,7 @@ const RegisterEmail = ({ navigation }) => {
         style={{ padding: 20, backgroundColor: "#fff" }}
       >
         <TouchableOpacity
-          onPress={() => navigation.navigate("login")}
+          onPress={() => navigation.navigate("Login")}
           className="p-4 drop-shadow-xl rounded-full mt-3 bg-slate-100"
         >
           <IconChevronLeft color="#000" size={32} />

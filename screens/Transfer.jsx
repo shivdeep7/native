@@ -5,19 +5,13 @@ import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import Button from "../components/Button";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
 import {
   reset,
   getSingleTransaction,
 } from "../features/transactions/transactionSlice";
 
-const data = {
-  title: "Cross Merge Salary",
-  state: "Accepted",
-  amount: "$1200",
-  Icon: Entypo,
-};
-
-const Transfer = ({ route }) => {
+const Transfer = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const { transaction } = useSelector((state) => state.transaction);
   const [status, setStatus] = useState("");
@@ -32,7 +26,7 @@ const Transfer = ({ route }) => {
   useEffect(() => {
     if (transaction.to) {
       const newStatus =
-        transaction?.to._id == user._id ? "Deposited" : "Widthrawn";
+        transaction?.from._id !== user._id ? "Deposited" : "Widthrawn";
       setStatus(newStatus);
     }
   }, [transaction]);
@@ -71,7 +65,7 @@ const Transfer = ({ route }) => {
           <View className="p-5 mt-10">
             <View className="p-5 ">
               <Text className="text-white text-md font-[PoppinsMedium] mb-1">
-                Amount Spend
+                Amount {status == "dopisted" ? "Received" : "Withdrawn"}
               </Text>
               <Text className="text-white text-lg font-[PoppinsSemiBold]">
                 ${transaction.amount}
@@ -79,10 +73,10 @@ const Transfer = ({ route }) => {
             </View>
             <View className="p-5 ">
               <Text className="text-white text-md font-[PoppinsMedium] mb-1">
-                {transaction.createdOn}
+                {status == "deposited" ? "Recevied on" : "Sent on"}
               </Text>
               <Text className="text-white text-lg font-[PoppinsSemiBold]">
-                12th June 2020
+                {moment(transaction.createdOn).format("MMMM Do YYYY, h:mm:ss")}
               </Text>
             </View>
             <View className="p-5 ">
@@ -98,6 +92,7 @@ const Transfer = ({ route }) => {
               textColor="#000"
               backgroundColor="bg-white"
               borderColor="bg-gray-400"
+              onPress={() => navigation.navigate("Send")}
               arrow
             />
           </View>

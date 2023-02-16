@@ -2,16 +2,15 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export const useError = (errorType) => {
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState({});
   const { isError, message } = useSelector((state) => state[errorType]);
   useEffect(() => {
     if (isError && typeof message == "object") {
+      const object = {};
       message.map((error) => {
-        setErrors((state) => ({
-          ...state,
-          [error.param]: error.msg,
-        }));
+        object[error.param] = error.msg;
       });
+      setErrors({ ...object });
     }
 
     if (isError && typeof message == "string") {

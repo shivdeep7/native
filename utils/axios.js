@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { REACT_APP_BASE_URL as BASE_URL } from "@env";
 
 axios.defaults.baseURL = BASE_URL;
