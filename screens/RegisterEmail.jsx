@@ -2,21 +2,38 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import CustomStatusBar from "../components/StatusBar";
 import { IconChevronLeft, IconChevronRight } from "tabler-icons-react-native";
-import { updateProfile } from "../features/auth/authSlice";
+import { updateProfile, reset } from "../features/auth/authSlice";
 import { useError } from "../hooks/useError";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNotifications } from "../hooks/useNotifications";
 import * as Notifications from "expo-notifications";
 
 const RegisterEmail = ({ navigation }) => {
   const dispatch = useDispatch();
+  const inputRef = useRef(null);
   const [errors, setErrors] = useError("auth");
   const [email, setEmail] = useState("");
+  const { isSuccess, user } = useSelector((state) => state.auth);
   const { registerForPushNofitication } = useNotifications();
 
   useEffect(() => {
     registerForPushNofitication();
+
+    // Add the focus
+    inputRef.current.focus();
   }, []);
+
+  useEffect(() => {
+    if (isSuccess && user && !user.name) {
+      navigation.replace("RegisterName");
+    }
+
+    if (isSuccess && user && user.email) {
+      navigation.replace("home");
+    }
+
+    return () => dispatch(reset());
+  }, [isSuccess, user]);
 
   const handleOnSubmit = () => {
     dispatch(updateProfile({ email }));
@@ -33,9 +50,9 @@ const RegisterEmail = ({ navigation }) => {
           </Text>
         </View>
         <TextInput
-          onPress={() => this.textInput.current.focus()}
+          ref={inputRef}
           className={`
-            p-5 bg-zinc-100 rounded-sm mt-3 focus:border-2 focus:border-dark  border-dark placeholder:text-xl
+            p-4 bg-zinc-100 rounded-xl mt-3 focus:border-2 focus:border-dark  border-dark placeholder:text-md
             ${errors && "bg-red-100 border-red-400 text-red-400"}
 
             `}

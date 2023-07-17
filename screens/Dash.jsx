@@ -32,6 +32,9 @@ const Dash = ({ navigation }) => {
   const { credit, isLoading: creditLoading } = useSelector(
     (state) => state.user
   );
+  const {
+    user: { name },
+  } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isSuccess) {
@@ -39,16 +42,14 @@ const Dash = ({ navigation }) => {
     }
   }, [isSuccess]);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(transaction.getAllTransactions());
-      dispatch(user.getUserCurrentBalance());
+  useEffect(() => {
+    dispatch(transaction.getAllTransactions());
+    dispatch(user.getUserCurrentBalance());
 
-      return () => {
-        dispatch(transaction.reset());
-      };
-    }, [])
-  );
+    return () => {
+      dispatch(transaction.reset());
+    };
+  }, []);
 
   const onRefresh = () => {
     // On refresh fetch the new data
@@ -79,17 +80,21 @@ const Dash = ({ navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <Card
-          title="Lifetime Earnings"
-          subtitle={`$${credit?.lifeTimeEarnings}`}
-          footerTitle="Credit History"
+        <Title
+          title={` Hi, ${name} 👋`}
+          size="3xl"
+          marginTop={12}
+          marginBottom={0}
         />
+        <Text className="text-md text-white font-[PoppinsMedium] mb-2">
+          Your earnings history
+        </Text>
         <Card
-          title="Current Credit"
+          title="Total earnings"
           subtitle={`$${credit?.balance}`}
-          footerTitle="Shivdeep Singh"
-          backgroundImage={card}
+          className="h-24 mb-3"
         />
+
         <View className="flex-row justify-between items-center">
           <Title title="Transfers" marginBottom={3} marginTop={5} />
           <Text

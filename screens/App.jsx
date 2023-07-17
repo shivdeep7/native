@@ -2,10 +2,9 @@ import { View, Dimensions } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import Widthraw from "./Widthraw";
+import JobsRoute from "./JobsRoute";
 import Dash from "./Dash";
 import ProfileHome from "./ProfileHome";
-import { useDispatch, useSelector } from "react-redux";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -42,8 +41,8 @@ const App = () => {
             },
           }}
         >
-          <Tab.Screen name="Wallet" component={Dash} />
-          <Tab.Screen name="Send" component={Widthraw} />
+          <Tab.Screen name="Earning" component={Dash} />
+          <Tab.Screen name="Jobs" component={JobsRoute} />
           <Tab.Screen name="Profile" component={ProfileHome} />
         </Tab.Navigator>
       </SafeAreaView>

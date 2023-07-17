@@ -1,35 +1,72 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
+import Pill from "./Pill";
 
-const Post = ({ name, location, hiringNo, wage }) => {
+const Post = ({
+  name,
+  timing,
+  location,
+  hiringNo,
+  wage,
+  estimatedEarnings,
+  onPress,
+  pill = false,
+  categories = [],
+  tags = [],
+}) => {
   return (
-    <View style={styles.post}>
+    <TouchableOpacity
+      style={styles.post}
+      onPress={onPress}
+      className="bg-zinc-900 p-5 mt-5"
+    >
       <View style={styles.postInfo}>
-        <Text style={styles.title}>{name}</Text>
-        <Text style={{ color: "#999999" }}>{location}</Text>
-        <Text style={{ color: "#999999" }}>Hiring: {hiringNo} Candidates</Text>
+        <Text className="text-white text-xl font-[PoppinsMedium]">{name}</Text>
+        <Text className="text-white text-zine-600 font-[PoppinsMedium] mt-2">
+          {timing}
+        </Text>
+        <Text className="text-white text-zine-600 font-[PoppinsMedium]">
+          {location}
+        </Text>
+        <View className="flex-row">
+          {tags.length > 0 &&
+            tags.map((tag) => {
+              return (
+                <Pill
+                  key={tag._id}
+                  className={`bg-yellow-500 w-[auto] p-1 items-center mt-4 mr-2 px-4 ${tag.color}`}
+                  textColor={tag.text}
+                >
+                  {tag.name}
+                </Pill>
+              );
+            })}
+        </View>
       </View>
       <View style={{ alignItems: "center" }}>
-        <Text>${wage}/hour</Text>
+        <View>
+          <Text className="text-white text-xl font-[PoppinsMedium]">
+            ${estimatedEarnings}
+          </Text>
+          <Text className="text-white text-zine-500 font-[PoppinsRegular]">
+            ${wage}/hr
+          </Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   post: {
-    padding: 20,
-    paddingVertical: 30,
-    borderBottomColor: "#ddd",
-    borderBottomWidth: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    width: "90%",
     alignSelf: "center",
   },
   title: {
     fontSize: 18,
+    color: "white",
     fontWeight: "600",
     display: "block",
     marginBottom: 3,

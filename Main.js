@@ -27,6 +27,7 @@ import Settings from "./screens/Profile";
 import OnBoard from "./screens/OnBoard";
 import Transfers from "./screens/Transfers";
 import Transfer from "./screens/Transfer";
+import JobDetails from "./screens/JobDetails";
 import Success from "./screens/Success";
 
 Notifications.setNotificationHandler({
@@ -102,6 +103,7 @@ const Main = () => {
               <Stack.Screen name="Transfers" component={Transfers} />
               <Stack.Screen name="Transfer" component={Transfer} />
               <Stack.Screen name="Success" component={Success} />
+              <Stack.Screen name="Job" component={JobDetails} />
             </>
           ) : (
             <>

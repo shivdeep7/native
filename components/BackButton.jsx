@@ -11,7 +11,7 @@ const BackButton = ({ bgColor = "", color = "#fff", style }) => {
       onPress={() => navigation.goBack()}
     >
       <View
-        className={`flex-row p-4 rounded-full justify-center items-center mb-4 ${bgColor}`}
+        className={`flex-row p-4 rounded-full justify-center items-center ${bgColor}`}
       >
         <MaterialIcons name="arrow-back" size={24} color={color} />
       </View>

@@ -51,25 +51,16 @@ const Success = ({ navigation }) => {
             Well done!
           </Text>
           <Text className="text-white text-center font-[PoppinsMedium] text-lg">
-            Amount sent to your bank
+            You have applied for the job. We will be in touch shorty.
           </Text>
         </View>
-
-        <Button
-          text="New transfer"
-          backgroundColor="bg-white"
-          borderColor="bg-gray-400"
-          textColor="black"
-          onPress={() => navigation.navigate("Send")}
-          arrow
-        />
 
         <Button
           text="Back home"
           backgroundColor="bg-white"
           borderColor="bg-gray-400"
           textColor="black"
-          onPress={() => navigation.navigate("Wallet")}
+          onPress={() => navigation.navigate("JobsList")}
         />
       </View>
     </ScrollView>
