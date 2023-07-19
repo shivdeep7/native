@@ -43,7 +43,7 @@ const ProfileSettings = ({ navigation }) => {
       className="bg-black p-5"
     >
       <View>
-        <BackButton bgColor="bg-zinc-700" />
+        <BackButton bgColor="bg-zinc-700" style={{ marginBottom: 20 }} />
         <Title title="Edit Profile" size="3xl" />
         <Text className="text-zinc-400 font-[PoppinsMedium]">
           Edit your personal information

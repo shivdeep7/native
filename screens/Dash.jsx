@@ -80,21 +80,19 @@ const Dash = ({ navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <Title
-          title={` Hi, ${name} 👋`}
-          size="3xl"
-          marginTop={12}
-          marginBottom={0}
-        />
-        <Text className="text-md text-white font-[PoppinsMedium] mb-2">
-          Your earnings history
-        </Text>
-        <Card
-          title="Total earnings"
-          subtitle={`$${credit?.balance}`}
-          className="h-24 mb-3"
-        />
-
+        <View className="flex-1 mt-10 justify-center items-center">
+          <View className="flex-row items-end">
+            <Text className="text-zinc-500 text-3xl mb-2 pt-1 font-[PoppinsSemiBold]">
+              $
+            </Text>
+            <Text className="text-white text-5xl pt-1 font-[PoppinsSemiBold]">
+              234.00
+            </Text>
+          </View>
+          <Text className="text-zinc-500 text-lg font-[PoppinsMedium] mt-[-8px]">
+            Your total earnings
+          </Text>
+        </View>
         <View className="flex-row justify-between items-center">
           <Title title="Transfers" marginBottom={3} marginTop={5} />
           <Text
@@ -108,7 +106,7 @@ const Dash = ({ navigation }) => {
         {transactions.length != 0 ? (
           <TransferList data={transactions} />
         ) : (
-          <View className="bg-zinc-800 rounded-lg p-5 justify-center items-center mb-5">
+          <View className="border border-zinc-700 rounded-xl p-8 justify-center items-center mb-5">
             <Image source={coinImage} style={{ width: 100, height: 100 }} />
             <Text className="text-white text-xl font-[PoppinsSemiBold] my-2 text-center">
               You don't have any transactions

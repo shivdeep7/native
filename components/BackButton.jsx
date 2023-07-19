@@ -2,6 +2,7 @@ import { View, TouchableOpacity } from "react-native";
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { styled } from "nativewind";
 
 const BackButton = ({ bgColor = "", color = "#fff", style }) => {
   const navigation = useNavigation();

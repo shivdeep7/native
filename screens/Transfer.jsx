@@ -43,7 +43,7 @@ const Transfer = ({ route, navigation }) => {
         <LinearGradient
           colors={[`rgba(${color}, 0.3)`, `rgba(${color}, 0.1)`, "transparent"]}
         >
-          <BackButton style={{ top: 40 }} />
+          <BackButton style={{ marginTop: 40 }} />
           <View className="items-center">
             <View
               className={`flex-row  justify-center items-center rounded-2xl p-5 ${backgroundColor}`}
@@ -87,14 +87,6 @@ const Transfer = ({ route, navigation }) => {
                 E-transfer
               </Text>
             </View>
-            <Button
-              text="New transfer"
-              textColor="#000"
-              backgroundColor="bg-white"
-              borderColor="bg-gray-400"
-              onPress={() => navigation.navigate("Send")}
-              arrow
-            />
           </View>
         </LinearGradient>
       )}

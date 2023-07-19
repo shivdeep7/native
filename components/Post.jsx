@@ -18,16 +18,16 @@ const Post = ({
     <TouchableOpacity
       style={styles.post}
       onPress={onPress}
-      className="bg-zinc-900 p-5 mt-5"
+      className="bg-zinc-900  p-7 mt-5 w-[93%] rounded-xl"
     >
       <View style={styles.postInfo}>
-        <Text className="text-white text-xl font-[PoppinsMedium]">{name}</Text>
-        <Text className="text-white text-zine-600 font-[PoppinsMedium] mt-2">
+        <Text className="text-white text-xl font-[Poppins] font-[700]">
+          {name}
+        </Text>
+        <Text className="text-zinc-400 font-[PoppinsMedium] mt-2">
           {timing}
         </Text>
-        <Text className="text-white text-zine-600 font-[PoppinsMedium]">
-          {location}
-        </Text>
+        <Text className="text-zinc-400 font-[PoppinsMedium]">{location}</Text>
         <View className="flex-row">
           {tags.length > 0 &&
             tags.map((tag) => {
@@ -45,10 +45,10 @@ const Post = ({
       </View>
       <View style={{ alignItems: "center" }}>
         <View>
-          <Text className="text-white text-xl font-[PoppinsMedium]">
+          <Text className="text-white text-xl font-[Poppins] font-[700]">
             ${estimatedEarnings}
           </Text>
-          <Text className="text-white text-zine-500 font-[PoppinsRegular]">
+          <Text className="text-zinc-400 font-[Poppins] font-[600]">
             ${wage}/hr
           </Text>
         </View>

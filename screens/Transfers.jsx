@@ -24,7 +24,7 @@ const Transfers = () => {
     >
       <CustomeStatusBar style="light-content" color="#111" />
       <View className="flex-1 ">
-        <BackButton bgColor="bg-zinc-800" />
+        <BackButton bgColor="bg-zinc-800" style={{ marginBottom: 20 }} />
 
         {transactions.length != 0 ? (
           <View className="flex-1">

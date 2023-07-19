@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "boilerplate",
-    "slug": "boilerplate",
+    "name": "Crew app",
+    "slug": "crew",
     "version": "1.0.0",
     "scheme": "crew",
     "orientation": "portrait",
@@ -18,21 +18,22 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.shivdeep7.boilerplate",
+      "bundleIdentifier": "com.shiv.crew",
       "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.shivdeep7.boilerplate"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "62fc3c3a-f2ec-4f5c-b320-a4b741f3eb3b"
+        "projectId": "6bb86a02-938b-47f0-8936-f688be2918fb"
       }
     }
   }

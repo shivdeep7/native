@@ -16,18 +16,16 @@ const Card = ({
 
   return (
     <Tag
-      className="rounded-md bg-zinc-800 mt-5 h-48 p-4"
+      className="rounded-md bg-zinc-900 mt-5 p-4"
       source={backgroundImage && backgroundImage}
       imageStyle={{ borderRadius: 8 }}
       {...props}
     >
-      <View className="flex-1">
+      <View className="flex-1 ">
         <Text className="text-white font-[PoppinsSemiBold] text-3xl mt-2">
           {subtitle}
         </Text>
-        <Text className="text-white font-[PoppinsRegular] text-md">
-          {title}
-        </Text>
+        <Text className="text-white font-[PoppinsLight text-md">{title}</Text>
       </View>
       {footer && (
         <View className="flex-row justify-between items-center">
