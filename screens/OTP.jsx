@@ -25,6 +25,10 @@ const Login = ({ route, navigation }) => {
   }, []);
 
   useEffect(() => {
+    if (isSuccess && user && !user.accountVerified) {
+      navigation.replace("Account");
+    }
+
     if (isSuccess && user && !user.name) {
       navigation.replace("RegisterName");
     }
@@ -36,6 +40,7 @@ const Login = ({ route, navigation }) => {
     if (isSuccess) {
       navigation.replace("home");
     }
+
     return () => dispatch(reset);
   }, [isSuccess, navigation]);
 

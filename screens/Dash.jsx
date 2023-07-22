@@ -86,7 +86,7 @@ const Dash = ({ navigation }) => {
               $
             </Text>
             <Text className="text-white text-5xl pt-1 font-[PoppinsSemiBold]">
-              234.00
+              {credit ? credit.balance : "0.00"}
             </Text>
           </View>
           <Text className="text-zinc-500 text-lg font-[PoppinsMedium] mt-[-8px]">

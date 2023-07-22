@@ -14,6 +14,12 @@ const RegisterName = ({ navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // Check if the user account is fully verified
+    if (isSuccess && user && !user.accountVerified) {
+      navigation.replace("Account");
+    }
+
+    // Check if the user already have the email
     if (isSuccess && user && !user.email) {
       navigation.replace("RegisterEmail");
     }

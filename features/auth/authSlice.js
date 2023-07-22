@@ -91,6 +91,9 @@ const authSlice = createSlice({
       state.message = "";
       state.isSuccess = false;
     },
+    updateAccountVerified: (state, action) => {
+      state.user.accountVerified = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -147,5 +150,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { reset } = authSlice.actions;
+export const { reset, updateAccountVerified } = authSlice.actions;
 export default authSlice.reducer;

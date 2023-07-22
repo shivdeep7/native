@@ -6,7 +6,6 @@ import { updateProfile, reset } from "../features/auth/authSlice";
 import { useError } from "../hooks/useError";
 import { useDispatch, useSelector } from "react-redux";
 import { useNotifications } from "../hooks/useNotifications";
-import * as Notifications from "expo-notifications";
 
 const RegisterEmail = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -24,6 +23,11 @@ const RegisterEmail = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
+    // Check if the user account is fully verified
+    if (isSuccess && user && !user.accountVerified) {
+      navigation.replace("Account");
+    }
+
     if (isSuccess && user && !user.name) {
       navigation.replace("RegisterName");
     }

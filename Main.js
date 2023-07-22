@@ -17,7 +17,6 @@ const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
 
 // Import the screens
-import Home from "./screens/Dash";
 import App from "./screens/App";
 import Login from "./screens/Login";
 import Otp from "./screens/OTP";
@@ -29,6 +28,7 @@ import Transfers from "./screens/Transfers";
 import Transfer from "./screens/Transfer";
 import JobDetails from "./screens/JobDetails";
 import Success from "./screens/Success";
+import AccountInformation from "./screens/AccountInformation";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -96,7 +96,7 @@ const Main = () => {
         <Stack.Navigator
           screenOptions={{ initialRouteName: "otp", headerShown: false }}
         >
-          {user && user.name && user.email ? (
+          {user && user.name && user.email && user.accountVerified ? (
             <>
               <Stack.Screen name="App" component={App} />
               <Stack.Screen name="Settings" component={Settings} />
@@ -112,6 +112,7 @@ const Main = () => {
               <Stack.Screen name="Otp" component={Otp} />
               <Stack.Screen name="RegisterName" component={RegisterName} />
               <Stack.Screen name="RegisterEmail" component={RegisterEmail} />
+              <Stack.Screen name="Account" component={AccountInformation} />
             </>
           )}
         </Stack.Navigator>
