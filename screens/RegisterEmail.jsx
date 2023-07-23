@@ -47,10 +47,12 @@ const RegisterEmail = ({ navigation }) => {
     <>
       <View style={{ flex: 1, padding: 20, backgroundColor: "#fff" }}>
         <CustomStatusBar />
-        <View className="mt-5">
-          <Text className="font-[PoppinsMedium] text-xl">Email address</Text>
-          <Text className="font-[PoppinsLight] text-xl">
-            Best email to reach you?
+        <View style={{ width: "90%" }}>
+          <Text className="font-[PoppinsSemiBold] text-3xl mt-10">
+            Email Address
+          </Text>
+          <Text className="font-[PoppinsMedium] text-md mt-2">
+            Best email to reach you
           </Text>
         </View>
         <TextInput

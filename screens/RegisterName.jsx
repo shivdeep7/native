@@ -39,12 +39,15 @@ const RegisterName = ({ navigation }) => {
     <>
       <View style={{ flex: 1, padding: 20, backgroundColor: "#fff" }}>
         <CustomStatusBar />
-        <View className="mt-10">
-          <Text className="font-[PoppinsSemiBold] text-3xl">Hey there 👋</Text>
-          <Text className="font-[PoppinsMedium] text-xl">
-            What should we call you?
+        <View style={{ width: "90%" }}>
+          <Text className="font-[PoppinsSemiBold] text-3xl mt-10">
+            Hey there 👋
+          </Text>
+          <Text className="font-[PoppinsMedium] text-md mt-2">
+            What's your full name?
           </Text>
         </View>
+
         <TextInput
           onChangeText={(value) => setName(value)}
           className={`p-5 bg-zinc-100 rounded-sm mt-3 focus:border-2 focus:border-dark  border-dark placeholder:text-xl text-xl ${

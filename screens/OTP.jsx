@@ -82,12 +82,14 @@ const Login = ({ route, navigation }) => {
     <>
       <View style={{ flex: 1, padding: 20, backgroundColor: "#fff" }}>
         <CustomStatusBar color="#fff" />
-        <Text className="font-[PoppinsSemiBold] text-3xl 3xl mt-10">
-          Verify your {"\n"}mobile number
-        </Text>
-        <Text className="font-[PoppinsRegular] text-md">
-          Enter the 6 digits code sent to your number
-        </Text>
+        <View style={{ width: "90%" }}>
+          <Text className="font-[PoppinsSemiBold] text-3xl mt-10">
+            Verify your {"\n"}mobile number{" "}
+          </Text>
+          <Text className="font-[PoppinsMedium] text-md mt-2">
+            Enter the 6 digits code sent to your number
+          </Text>
+        </View>
         <View className="flex-row mt-5">
           {Array.from({ length: OtpCodeLength }).map((i, index) => {
             return (
