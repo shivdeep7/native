@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import React from "react";
 import { IconArrowNarrowRight } from "tabler-icons-react-native";
-
+import { styled } from "nativewind";
 const Button = ({
   text,
   backgroundColor,
@@ -15,15 +15,15 @@ const Button = ({
 }) => {
   return (
     <TouchableOpacity
-      className="mt-5"
       onPress={() => onPress()}
       disabled={disabled}
+      className="mt-5"
+      {...props}
     >
       <View
         className={`flex-row justify-center items-center p-3 rounded-xl ${backgroundColor} ${
           loading && "opacity-25"
         } ${disabled && "bg-zinc-900"}`}
-        {...props}
         style={{
           marginLeft: -2,
           marginTop: -2,
@@ -43,4 +43,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default styled(Button);

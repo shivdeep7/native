@@ -6,15 +6,14 @@ import {
   ScrollView,
   RefreshControl,
   FlatList,
+  TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 
-import card from "../assets/img/card.png";
-import Card from "../components/Card";
 import Title from "../components/Title";
 import { useFocusEffect } from "@react-navigation/native";
-import coinImage from "../assets/img/coin.png";
+import serachImage from "../assets/search.png";
 import TransferList from "../components/TransferList.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import * as transaction from "../features/transactions/transactionSlice";
@@ -80,39 +79,47 @@ const Dash = ({ navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <View className="flex-1 mt-10 justify-center items-center">
+        <View className="flex-1 mt-10 justify-start items-start">
           <View className="flex-row items-end">
-            <Text className="text-zinc-500 text-3xl mb-2 pt-1 font-[PoppinsSemiBold]">
-              $
-            </Text>
-            <Text className="text-white text-5xl pt-1 font-[PoppinsSemiBold]">
-              {credit ? credit.balance : "0.00"}
+            <Text
+              className="text-white text-2xl pt-1 "
+              style={{ fontFamily: "PoppinsSemiBold" }}
+            >
+              hello, {name.split(" ")[0]} 👋
             </Text>
           </View>
-          <Text className="text-zinc-500 text-lg font-[PoppinsMedium] mt-[-8px]">
-            Your total earnings
-          </Text>
-        </View>
-        <View className="flex-row justify-between items-center">
-          <Title title="Transfers" marginBottom={3} marginTop={5} />
           <Text
-            className="text-white font-[PoppinsMedium]"
-            onPress={() => navigation.navigate("Transfers")}
+            className="text-zinc-500 text-lg"
+            style={{ fontFamily: "PoppinsMedium" }}
           >
-            See all
+            here are today's jobs
           </Text>
         </View>
 
-        {transactions.length != 0 ? (
-          <TransferList data={transactions} />
-        ) : (
-          <View className="border border-zinc-700 rounded-xl p-8 justify-center items-center mb-5">
-            <Image source={coinImage} style={{ width: 100, height: 100 }} />
-            <Text className="text-white text-xl font-[PoppinsSemiBold] my-2 text-center">
-              You don't have any transactions
+        <View className="mt-5 border bg-zinc-900 rounded-lg p-6 justify-start items-start mb-5">
+          <Text className="text-white text-xl font-[PoppinsSemiBold]">
+            Welcome to crew
+          </Text>
+          <Text className="text-white text-md font-[PoppinsMedium] mt-2">
+            We help Canadian's find {"\n"}local jobs
+          </Text>
+        </View>
+        <View className="border bg-violet-800 rounded-lg p-6  items-center mb-5">
+          <Text className="text-white text-xl font-[PoppinsSemiBold]">
+            Crew Jobs
+          </Text>
+          <Text className="text-white text-md text-center mb-5 font-[PoppinsMedium]">
+            Search local jobs based on {"\n"} your location in minutes
+          </Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Jobs")}
+            className="bg-black py-3  mt-5 px-5 rounded-full  flex-1 shadow-md m-[auto]"
+          >
+            <Text className="text-white text-center font-[PoppinsMedium]">
+              View Jobs
             </Text>
-          </View>
-        )}
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );

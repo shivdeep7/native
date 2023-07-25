@@ -12,8 +12,8 @@ const applyForAJob = async (jobId) => {
 };
 
 // Get the list of all the jobs
-const jobsList = async () => {
-  const response = await axios.get("jobs");
+const jobsList = async (page) => {
+  const response = await axios.get(`jobs/list/${page}`);
 
   if (response.data) {
     return response.data.data;

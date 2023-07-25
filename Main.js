@@ -46,6 +46,10 @@ const linking = {
         path: "transfer/:transferId",
       },
       Transfers: "transfers",
+      Success: "success",
+      Job: {
+        path: "job",
+      },
     },
   },
 };
@@ -81,6 +85,7 @@ const Main = () => {
 
   // Load the fonts
   const [Loaded] = useFonts({
+    Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
     PoppinsRegular: require("./assets/fonts/Poppins-Regular.ttf"),
     PoppinsMedium: require("./assets/fonts/Poppins-Medium.ttf"),
     PoppinsLight: require("./assets/fonts/Poppins-Light.ttf"),

@@ -3,6 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableOpacity,
   ScrollView,
   ActivityIndicator,
 } from "react-native";
@@ -15,21 +16,22 @@ import { useEffect, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
 import moment from "moment";
 import { SafeAreaView } from "react-native-safe-area-context";
+import * as Linking from "expo-linking";
 
 const JobDetails = ({ navigation }) => {
   const route = useRoute();
   const { job, isLoading, isSuccess } = useSelector((state) => state.jobs);
   const [applyStatus, setApplyStatus] = useState(false);
+  const { jobId } = route.params;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(singleJob(route.params.id));
+    dispatch(singleJob(jobId));
     return () => dispatch(reset);
-  }, []);
+  }, [jobId]);
 
   useEffect(() => {
-    console.log("Applied status run");
     if (applyStatus && isSuccess) {
       // Set the apply status to false
       setApplyStatus(false);
@@ -59,10 +61,49 @@ const JobDetails = ({ navigation }) => {
     setApplyStatus(true);
   };
 
+  const buttonGenerator = (job) => {
+    let text = "Apply";
+    let location = () => {
+      handleApply(job._id);
+    };
+
+    if (job.email) {
+      text = "Email to apply";
+      location = () => {
+        Linking.openURL(`mailto:${job.email}`);
+      };
+    }
+
+    if (job.phone) {
+      text = "Call Now";
+      location = () => {
+        Linking.openURL(`tel:${job.phone}`);
+      };
+    }
+
+    if (job.applied) {
+      text = "Already applied";
+    }
+
+    return (
+      <TouchableOpacity
+        className={`bg-green-600 my-4 py-4 w-[100%] text-center rounded-full shadow-xl px-7 mx-auto ${
+          job?.applied && "text-dimmed opacity-50 bg-zinc-900"
+        }`}
+        disabled={job?.applied}
+        onPress={() => location()}
+      >
+        <Text className="text-white  text-center text-md font-[PoppinsSemiBold]">
+          {text}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     job && (
       <SafeAreaView className="bg-black flex-1">
-        <ScrollView className="flex-1 mt-7 ">
+        <ScrollView className="flex-1 mt-7  bg-black">
           <View className="flex flex-row items-center mb-5">
             <BackButton />
             <View>
@@ -120,22 +161,17 @@ const JobDetails = ({ navigation }) => {
               />
             </MapView>
           </View>
-          <View className="flex-col justify-between bg-zinc-900 p-4 mt-4">
+          <View className="flex-col justify-between bg-zinc-900 p-4 mt-4 ">
             <Title title="Description" />
 
-            <Text className="text-white text-zine-500 font-[PoppinsRegular] mb-3">
+            <Text className="text-white text-zine-500 font-[PoppinsRegular]">
               {job?.desc}
             </Text>
           </View>
-          <View className="p-4">
-            <Button
-              disabled={job?.applied}
-              text={job?.applied ? "Already applied" : "Apply now"}
-              onPress={() => handleApply(job._id)}
-              backgroundColor="bg-white"
-            />
-          </View>
         </ScrollView>
+        <View className="justify-center items-center">
+          {buttonGenerator(job)}
+        </View>
       </SafeAreaView>
     )
   );

@@ -18,10 +18,10 @@ const Post = ({
     <TouchableOpacity
       style={styles.post}
       onPress={onPress}
-      className="bg-zinc-900  p-7 mt-5 w-[93%] rounded-xl"
+      className="bg-zinc-900 p-8 border border-zinc-700 mt-3 w-[98%] rounded-xl shadow-xl"
     >
       <View style={styles.postInfo}>
-        <Text className="text-white text-xl font-[Poppins] font-[700]">
+        <Text className="text-white text-xl font-[PoppinsMedium] font-[700]">
           {name}
         </Text>
         <Text className="text-zinc-400 font-[PoppinsMedium] mt-2">
@@ -33,7 +33,6 @@ const Post = ({
             tags.map((tag) => {
               return (
                 <Pill
-                  key={tag._id}
                   className={`bg-yellow-500 w-[auto] p-1 items-center mt-4 mr-2 px-4 ${tag.color}`}
                   textColor={tag.text}
                 >
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     color: "white",
-    fontWeight: "600",
+    fontWeight: "700",
     display: "block",
     marginBottom: 3,
   },

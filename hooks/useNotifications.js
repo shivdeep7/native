@@ -16,10 +16,14 @@ export const useNotifications = () => {
   const dispatch = useDispatch();
 
   // Handle the nofication response
-  const handleNoticationResopnse = (response) => {
+  const handleNoticationResopnse = async (response) => {
     const data = response.notification.request.content.data;
+
     if (data?.url) {
+      // Log that user tried to open the notification
+
       Linking.openURL(data.url);
+      return;
     }
   };
 

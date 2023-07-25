@@ -13,6 +13,7 @@ const App = () => {
     <View className="flex-1 bg-black" style={{ backgroundColor: "#111" }}>
       <SafeAreaView className="flex-1">
         <Tab.Navigator
+          initialRouteName="Jobs"
           screenOptions={{
             tabBarLabelStyle: {
               color: "#fff",
@@ -41,7 +42,7 @@ const App = () => {
             },
           }}
         >
-          <Tab.Screen name="Earning" component={Dash} />
+          <Tab.Screen name="Home" component={Dash} />
           <Tab.Screen name="Jobs" component={JobsRoute} />
           <Tab.Screen name="Profile" component={ProfileHome} />
         </Tab.Navigator>
