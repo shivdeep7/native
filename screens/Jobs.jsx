@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  View,
-  ScrollView,
-  Text,
-  ActivityIndicator,
-  FlatList,
-} from "react-native";
+import { View, ActivityIndicator, FlatList } from "react-native";
 
 import Post from "../components/Post";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,9 +13,6 @@ const Jobs = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(getJobs(page));
-
-    // Screen tracker
-    trackScreenView("Jobs");
 
     return () => {
       return () => dispatch(reset());
