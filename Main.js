@@ -1,6 +1,7 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
+
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -114,9 +115,12 @@ const Main = () => {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer linking={linking}>
+      <NavigationContainer linking={linking} theme={DarkTheme}>
         <Stack.Navigator
-          screenOptions={{ initialRouteName: "otp", headerShown: false }}
+          screenOptions={{
+            initialRouteName: "otp",
+            headerShown: false,
+          }}
         >
           {user && user.name && user.email ? (
             <>

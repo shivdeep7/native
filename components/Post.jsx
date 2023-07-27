@@ -18,7 +18,7 @@ const Post = ({
     <TouchableOpacity
       style={styles.post}
       onPress={onPress}
-      className="bg-zinc-900 p-8 border border-zinc-700 mt-3 w-[98%] rounded-xl shadow-xl"
+      className="bg-zinc-900 p-8 border border-zinc-700 mb-4 w-[90%] rounded-xl shadow-xl"
     >
       <View style={styles.postInfo}>
         <Text className="text-white text-xl font-[PoppinsMedium] font-[700]">

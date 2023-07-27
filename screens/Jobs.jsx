@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { View, ActivityIndicator, FlatList } from "react-native";
+import { View, ActivityIndicator, FlatList, Text } from "react-native";
 
 import Post from "../components/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { reset, getJobs, pageCount } from "../features/jobs/jobsSlice";
 import trackScreenView from "../utils/trackScreenView";
+import Title from "../components/Title";
 
 const Jobs = ({ navigation }) => {
   const { jobs, isLoading, pages } = useSelector((state) => state.jobs);
@@ -73,11 +74,17 @@ const Jobs = ({ navigation }) => {
 
   return (
     jobs && (
-      <View className="flex-1 bg-black">
+      <View className="flex-1">
+        <View className="p-5 mt-4 mb-1">
+          <Title title="Available jobs 👷" />
+          <Text className="text-zinc-500 text-md font-[PoppinsMedium]">
+            New jobs available in your area
+          </Text>
+        </View>
         <FlatList
           data={jobs}
           renderItem={renderJobs}
-          keyExtractor={(item) => item._id}
+          mkeyExtractor={(item) => item._id}
           className="flex-1 bg-black"
           contentContainerStyle={{ flexGrow: 1 }}
           ListFooterComponent={renderLoader}
