@@ -2,7 +2,9 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { useDispatch, useSelector } from "react-redux";
 import * as Linking from "expo-linking";
-import { Alert } from "react-native";
+
+import { REACT_APP_PROJECT_ID as PROJECT_ID } from "@env";
+import analytics from "@react-native-firebase/analytics";
 
 // Get the state
 import {
@@ -21,6 +23,9 @@ export const useNotifications = () => {
 
     if (data?.url) {
       // Log that user tried to open the notification
+      analytics().logEvent("notification_opened", {
+        url: data.url,
+      });
 
       Linking.openURL(data.url);
       return;
@@ -45,24 +50,12 @@ export const useNotifications = () => {
         finalStatus = status;
       }
 
-      if (finalStatus !== "granted") {
-        Alert.alert(
-          "Notifications ",
-          "Open settings to allow app notification permisssion",
-          [
-            {
-              text: "Open Settings",
-              onPress: () => Linking.openURL("app-settings:"),
-            },
-          ]
-        );
-        const token = (await Notifications.getExpoPushTokenAsync()).data;
-        dispatch(updatePushStatus(true)) &&
-          dispatch(updatePushNotificationToken(token));
-        return;
-      }
+      const token = (
+        await Notifications.getExpoPushTokenAsync({
+          projectId: PROJECT_ID,
+        })
+      ).data;
 
-      const token = (await Notifications.getExpoPushTokenAsync()).data;
       // Save the user notification
       dispatch(updatePushStatus(true)) &&
         dispatch(updatePushNotificationToken(token));

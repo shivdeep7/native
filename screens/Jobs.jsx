@@ -4,16 +4,18 @@ import { View, ActivityIndicator, FlatList } from "react-native";
 
 import Post from "../components/Post";
 import { useDispatch, useSelector } from "react-redux";
-import { reset, getJobs } from "../features/jobs/jobsSlice";
+import { reset, getJobs, pageCount } from "../features/jobs/jobsSlice";
+import trackScreenView from "../utils/trackScreenView";
 
 const Jobs = ({ navigation }) => {
-  const { jobs, isLoading } = useSelector((state) => state.jobs);
+  const { jobs, isLoading, pages } = useSelector((state) => state.jobs);
   const [page, setPage] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getJobs(page));
-
+    dispatch(pageCount());
+    trackScreenView("jobs");
     return () => {
       return () => dispatch(reset());
     };
@@ -35,6 +37,11 @@ const Jobs = ({ navigation }) => {
   const loadItems = () => {
     // Set the page
     const nextPage = page + 1;
+
+    // Check if the user reached last page
+    if (nextPage > pages) {
+      return;
+    }
 
     // Set the next page jobs
     dispatch(getJobs(nextPage));

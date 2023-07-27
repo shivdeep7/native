@@ -1,4 +1,4 @@
-package com.crew.ap.newarchitecture.modules;
+package com.shiv.crew.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

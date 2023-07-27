@@ -1,20 +1,14 @@
 import {
   View,
   Text,
-  Image,
   StatusBar,
   ScrollView,
   RefreshControl,
-  FlatList,
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 
-import Title from "../components/Title";
-import { useFocusEffect } from "@react-navigation/native";
-import serachImage from "../assets/search.png";
-import TransferList from "../components/TransferList.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import * as transaction from "../features/transactions/transactionSlice";
 import * as user from "../features/user/userSlice";
@@ -92,7 +86,7 @@ const Dash = ({ navigation }) => {
             className="text-zinc-500 text-lg"
             style={{ fontFamily: "PoppinsMedium" }}
           >
-            here are today's jobs
+            explore the app here
           </Text>
         </View>
 
@@ -101,7 +95,7 @@ const Dash = ({ navigation }) => {
             Welcome to crew
           </Text>
           <Text className="text-white text-md font-[PoppinsMedium] mt-2">
-            We help Canadian's find {"\n"}local jobs
+            We help Canadians find {"\n"}local jobs
           </Text>
         </View>
         <View className="border bg-violet-800 rounded-lg p-6  items-center mb-5">

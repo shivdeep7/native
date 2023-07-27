@@ -23,11 +23,6 @@ const RegisterEmail = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    // Check if the user account is fully verified
-    if (isSuccess && user && !user.accountVerified) {
-      navigation.replace("Account");
-    }
-
     if (isSuccess && user && !user.name) {
       navigation.replace("RegisterName");
     }

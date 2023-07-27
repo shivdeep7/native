@@ -2,7 +2,7 @@
   "expo": {
     "name": "Crew app",
     "slug": "crew",
-    "version": "1.1",
+    "version": "1.0.3",
     "scheme": "crew",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,15 +18,17 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.crew.app",
-      "buildNumber": "3"
+      "bundleIdentifier": "com.shiv.crew",
+      "buildNumber": "3",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.crew.app"
+      "package": "com.shiv.crew"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -35,6 +37,17 @@
       "eas": {
         "projectId": "6bb86a02-938b-47f0-8936-f688be2918fb"
       }
-    }
+    },
+    "plugins": [
+      "@react-native-firebase/app",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ]
   }
 }

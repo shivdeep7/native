@@ -17,6 +17,7 @@ import MapView, { Marker } from "react-native-maps";
 import moment from "moment";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Linking from "expo-linking";
+import analytics from "@react-native-firebase/analytics";
 
 const JobDetails = ({ navigation }) => {
   const route = useRoute();
@@ -27,6 +28,15 @@ const JobDetails = ({ navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (job._id) {
+      analytics().logEvent("job_opened", {
+        jobId: job._Id,
+        jobName: job.title,
+      });
+    }
+  }, [job]);
+
+  useEffect(() => {
     dispatch(singleJob(jobId));
     return () => dispatch(reset);
   }, [jobId]);
@@ -35,7 +45,6 @@ const JobDetails = ({ navigation }) => {
     if (applyStatus && isSuccess) {
       // Set the apply status to false
       setApplyStatus(false);
-      console.log("Applied status run 1");
 
       // Navigate the user to success page
       navigation.navigate("Success");
@@ -91,7 +100,14 @@ const JobDetails = ({ navigation }) => {
           job?.applied && "text-dimmed opacity-50 bg-zinc-900"
         }`}
         disabled={job?.applied}
-        onPress={() => location()}
+        onPress={() => {
+          analytics().logEvent("job_applied", {
+            jobId: job._Id,
+            jobName: job.title,
+            method: text,
+          });
+          location();
+        }}
       >
         <Text className="text-white  text-center text-md font-[PoppinsSemiBold]">
           {text}

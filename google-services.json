@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "224658425083",
+    "project_id": "crew-89bf8",
+    "storage_bucket": "crew-89bf8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224658425083:android:14d3db7f3359be2c9a1c5e",
+        "android_client_info": {
+          "package_name": "com.crew.jobs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224658425083-6lrk6brbnop5cpv4htndsodd1o7een54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb50rcuNet1Y1CrwKUbwwiFFRboU6guwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224658425083-6lrk6brbnop5cpv4htndsodd1o7een54.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "224658425083-1vlq2vcdd9cmalr2pvqumus44aplj95i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shiv.crew"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224658425083:android:ac87e2da0cbdd4799a1c5e",
+        "android_client_info": {
+          "package_name": "com.shiv.crew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224658425083-6lrk6brbnop5cpv4htndsodd1o7een54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb50rcuNet1Y1CrwKUbwwiFFRboU6guwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224658425083-6lrk6brbnop5cpv4htndsodd1o7een54.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "224658425083-1vlq2vcdd9cmalr2pvqumus44aplj95i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shiv.crew"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

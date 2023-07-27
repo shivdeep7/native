@@ -11,6 +11,15 @@ const applyForAJob = async (jobId) => {
   }
 };
 
+// Count the total number of pages
+const pageCount = async () => {
+  const response = await axios.get("/jobs/count");
+
+  if (response.data) {
+    return response.data.data;
+  }
+};
+
 // Get the list of all the jobs
 const jobsList = async (page) => {
   const response = await axios.get(`jobs/list/${page}`);
@@ -29,4 +38,4 @@ const singleJob = async (id) => {
   }
 };
 
-export default { jobsList, singleJob, applyForAJob };
+export default { jobsList, singleJob, applyForAJob, pageCount };

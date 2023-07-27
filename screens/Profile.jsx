@@ -79,7 +79,7 @@ const Profile = ({ navigation }) => {
         <Title title="Profile" size="3xl" marginTop={1} marginBottom={1} />
         <View className="flex-row bg-zinc-800 p-5 mt-3 items-center rounded-lg">
           <View className="rounded-full p-3 bg-zinc-600 mr-3">
-            <MaterialIcons name="person" size="30" color="white" />
+            <MaterialIcons name="person" size={30} color="white" />
           </View>
           <View>
             <Text className="text-white font-[PoppinsSemiBold] text-lg">

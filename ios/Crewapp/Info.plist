@@ -17,7 +17,7 @@
     <key>CFBundlePackageType</key>
     <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0.2</string>
+    <string>1.0.3</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleURLTypes</key>
@@ -26,13 +26,13 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>crew</string>
-          <string>com.crew.ap</string>
+          <string>com.shiv.crew</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.googleusercontent.apps.224658425083-utj4o43pg96s79r15a0ho01erla0cbuk</string>
+          <string>com.googleusercontent.apps.224658425083-1vlq2vcdd9cmalr2pvqumus44aplj95i</string>
         </array>
       </dict>
       <dict>

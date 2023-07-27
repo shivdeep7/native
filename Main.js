@@ -9,6 +9,7 @@ import * as Linking from "expo-linking";
 import * as SplashScreen from "expo-splash-screen";
 import { useNotifications } from "./hooks/useNotifications";
 import * as Notifications from "expo-notifications";
+import analytics from "@react-native-firebase/analytics";
 
 // Setup the stack navigator
 const Stack = createNativeStackNavigator();
@@ -59,9 +60,25 @@ const Main = () => {
   const { handleNoticationResopnse } = useNotifications();
   const { user } = useSelector((state) => state.auth);
 
-  useEffect(async () => {
+  useEffect(() => {
+    if (user && user.name && user.email) {
+      // Add the user Id and properties
+      analytics().setUserId(user._id);
+      analytics().setUserProperties({
+        name: user.name,
+        email: user.email,
+      });
+    }
+  }, [user]);
+
+  useEffect(() => {
     // Wait for 2 seconds before hiding the splashscreen
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const delay = async (time) => {
+      await new Promise((resolve) => setTimeout(resolve, time));
+    };
+
+    delay(2000);
+
     // Hide the spashscreen
     SplashScreen.hideAsync();
 
@@ -101,7 +118,7 @@ const Main = () => {
         <Stack.Navigator
           screenOptions={{ initialRouteName: "otp", headerShown: false }}
         >
-          {user && user.name && user.email && user.accountVerified ? (
+          {user && user.name && user.email ? (
             <>
               <Stack.Screen name="App" component={App} />
               <Stack.Screen name="Settings" component={Settings} />

@@ -8,7 +8,26 @@ const initialState = {
   job: {},
   isError: false,
   message: "",
+  pages: 0,
 };
+
+export const pageCount = createAsyncThunk(
+  "jobs/pageCount",
+  async (id, thunkAPI) => {
+    try {
+      return await jobsService.pageCount();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.response.data.errors ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const applyJob = createAsyncThunk(
   "jobs/apply",
@@ -116,6 +135,21 @@ const jobsSlice = createSlice({
         state.isSuccess = true;
       })
       .addCase(applyJob.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSucces = false;
+        state.message = action.payload;
+      })
+      .addCase(pageCount.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(pageCount.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.pages = action.payload?.pages;
+      })
+      .addCase(pageCount.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSucces = false;
